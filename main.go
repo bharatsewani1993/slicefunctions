@@ -6,19 +6,22 @@ import(
 
 
 func slice_chunk(sliceone []string, size int){
-   var chunkslice,tempchunk []string
-   var count int
+   chunkslice := make(map[int][]string)
+   var tempchunk []string
+   var count int = 0
   // var tempchunk []string
-   for _, sliceelement := range sliceone {
-     for count < size {
-
+   for i, sliceelement := range sliceone {
+     if count < size {
        tempchunk = append(tempchunk,sliceelement)
        count++
+     } else {
+       count = 0
      }
-     chunkslice = append(chunkslice,tempchunk...)
+     fmt.Printf("Temp Chunk \n",tempchunk)
+     chunkslice[i] = tempchunk
      tempchunk = tempchunk[:0]
    }
-   fmt.Printf("Slice Chunk \n",chunkslice)
+   fmt.Printf("Slice Chunk %v\n",chunkslice)
 }
 
 func main(){
